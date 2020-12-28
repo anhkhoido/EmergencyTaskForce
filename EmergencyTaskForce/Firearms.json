@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Shadow 2 Black",
+    "manufacturer": "CZ",
+    "magazine": "10"
+  },
+  {
+    "name": "1911 R1",
+    "manufacturer": "Remington",
+    "magazine": "8"
+  },
+  {
+    "name": "Glock 17 Gen 4",
+    "manufacturer": "Glock",
+    "magazine": "10"
+  },
+  {
+    "name": "92FS",
+    "manufacturer": "Beretta",
+    "magazine": "10"
+  },
+  {
+    "name": "92FS",
+    "manufacturer": "Beretta",
+    "magazine": "10"
+  },
+  {
+    "name": "1911 Gold Cup National Match",
+    "manufacturer": "Colt",
+    "magazine": "8"
+  },
+  {
+    "name": "1911 Gold Cup Trophy",
+    "manufacturer": "Colt",
+    "magazine": "8"
+  },
+  {
+    "name": "Shadow 2 Blue",
+    "manufacturer": "CZ",
+    "magazine": "10"
+  },
+  {
+    "name": "Shadow 2 Orange",
+    "manufacturer": "CZ",
+    "magazine": "10"
+  },
+  {
+    "name": "Heritage",
+    "manufacturer": "Dan Wesson",
+    "magazine": "8"
+  },
+  {
+    "name": "Specialist",
+    "manufacturer": "Dan Wesson",
+    "magazine": "8"
+  },
+  {
+    "name": "Glock 17 Gen 5",
+    "manufacturer": "Glock",
+    "magazine": "10"
+  },
+  {
+    "name": "HK45",
+    "manufacturer": "Heckler & Koch",
+    "magazine": "8"
+  },
+  {
+    "name": "Mark 23",
+    "manufacturer": "Heckler & Koch",
+    "magazine": "8"
+  },
+  {
+    "name": "MP5",
+    "manufacturer": "Heckler & Koch",
+    "magazine": "30"
+  },
+  {
+    "name": "Peacemaker",
+    "manufacturer": "Colt",
+    "magazine": "6"
+  }
+]
