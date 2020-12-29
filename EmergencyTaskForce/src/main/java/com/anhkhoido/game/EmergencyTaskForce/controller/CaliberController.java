@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 @RestController
 @RequestMapping(path = "/emergencyTaskForce/calibers")
 public class CaliberController {
@@ -23,6 +27,12 @@ public class CaliberController {
         caliberRepository.save(caliber);
     }
 
+    @GetMapping(path = "/findAll")
+    public List<Caliber> findAll() {
+        Iterable<Caliber> calibers = caliberRepository.findAll();
+        return StreamSupport.stream(calibers.spliterator(), false).collect(Collectors.toList());
+    }
+
     @GetMapping(path = "/{id}")
     public Caliber findCaliberById(@PathVariable(value = "id") int id) {
         Integer i = Integer.valueOf(id);
@@ -31,8 +41,15 @@ public class CaliberController {
 
     @DeleteMapping(path = "/{id}")
     public void deleteCaliber(@PathVariable(value = "id") int id) {
-        Caliber caliber = caliberRepository.findById(id).get();
-        caliberRepository.delete(caliber);
+        if (caliberRepository.findById(id).isPresent()) {
+            Caliber caliber = caliberRepository.findById(id).get();
+            caliberRepository.delete(caliber);
+        }
+    }
+
+    @DeleteMapping(path = "/deleteAll")
+    public void deleteAll() {
+        caliberRepository.deleteAll();
     }
 
 }
