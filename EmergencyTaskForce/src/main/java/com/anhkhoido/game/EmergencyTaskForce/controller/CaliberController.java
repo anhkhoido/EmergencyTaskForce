@@ -24,7 +24,6 @@ public class CaliberController {
     }
 
     @GetMapping(path = "/{id}")
-    @ResponseStatus(HttpStatus.FOUND)
     public Caliber findCaliberById(@PathVariable(value = "id") int id) {
         Integer i = Integer.valueOf(id);
         return caliberRepository.findById(i).get();
