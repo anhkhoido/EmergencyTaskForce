@@ -12,7 +12,7 @@ import java.util.stream.StreamSupport;
 
 @RestController
 @RequestMapping(path = "/emergencyTaskForce/calibers")
-public class CaliberController {
+public class CaliberController extends AbstractController {
 
     @Autowired
     private CaliberRepository caliberRepository;
@@ -23,31 +23,29 @@ public class CaliberController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createCaliber(@RequestBody Caliber caliber) {
+    public void create(@RequestBody Caliber caliber) {
         caliberRepository.save(caliber);
     }
 
-    @GetMapping(path = "/findAll")
+    @Override
+    public Caliber findById(@PathVariable(value = "id") int id) {
+        return caliberRepository.findById(id).get();
+    }
+
+    @Override
     public List<Caliber> findAll() {
         Iterable<Caliber> calibers = caliberRepository.findAll();
         return StreamSupport.stream(calibers.spliterator(), false).collect(Collectors.toList());
     }
 
-    @GetMapping(path = "/{id}")
-    public Caliber findCaliberById(@PathVariable(value = "id") int id) {
-        Integer i = Integer.valueOf(id);
-        return caliberRepository.findById(i).get();
-    }
-
-    @DeleteMapping(path = "/{id}")
-    public void deleteCaliber(@PathVariable(value = "id") int id) {
+    @Override
+    public void deleteById(@PathVariable(value = "id") int id) {
         if (caliberRepository.findById(id).isPresent()) {
-            Caliber caliber = caliberRepository.findById(id).get();
-            caliberRepository.delete(caliber);
+            caliberRepository.deleteById(id);
         }
     }
 
-    @DeleteMapping(path = "/deleteAll")
+    @Override
     public void deleteAll() {
         caliberRepository.deleteAll();
     }

@@ -14,7 +14,7 @@ import java.util.stream.StreamSupport;
 
 @RestController
 @RequestMapping(path = "/emergencyTaskForce/firearms")
-public class FirearmController {
+public class FirearmController extends AbstractController {
 
     @Autowired
     private FirearmRepository firearmRepository;
@@ -37,20 +37,24 @@ public class FirearmController {
         firearmRepository.save(firearm);
     }
 
-    @GetMapping(path = "/{id}")
-    public Firearm findFirearmById(@PathVariable(value = "id") int id) {
+    @Override
+    public Firearm findById(@PathVariable(value = "id") int id) {
         return firearmRepository.findById(id).get();
     }
 
-    @DeleteMapping(path = "/{id}")
-    public void deleteFirearm(@PathVariable(value = "id") int id) {
+    @Override
+    public void deleteById(@PathVariable(value = "id") int id) {
         if (firearmRepository.findById(id).isPresent()) {
-            Firearm firearm = firearmRepository.findById(id).get();
-            firearmRepository.delete(firearm);
+            firearmRepository.deleteById(id);
         }
     }
 
-    @GetMapping(path = "/findAll")
+    @Override
+    public void deleteAll() {
+        firearmRepository.deleteAll();
+    }
+
+    @Override
     public List<Firearm> findAll() {
         Iterable<Firearm> firearms = firearmRepository.findAll();
         return StreamSupport.stream(firearms.spliterator(), false).collect(Collectors.toList());
