@@ -24,7 +24,7 @@ public class FirearmController extends AbstractController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createFirearm(@RequestBody Firearm firearm) {
+    public void create(@RequestBody Firearm firearm) {
         Caliber caliber = new Caliber();
         if (firearm.getMagazine() == 10 && caliberRepository.findByName("9mm").isPresent()) {
             caliber = caliberRepository.findByName("9mm").get();
