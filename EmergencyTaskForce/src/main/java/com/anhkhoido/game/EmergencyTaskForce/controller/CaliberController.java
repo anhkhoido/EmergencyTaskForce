@@ -6,17 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
 @RestController
 @RequestMapping(path = "/emergencyTaskForce/calibers")
 public class CaliberController extends AbstractController {
 
-    @Autowired
     private CaliberRepository caliberRepository;
 
+    @Autowired
     public CaliberController(CaliberRepository caliberRepository) {
         this.caliberRepository = caliberRepository;
     }
@@ -28,18 +24,17 @@ public class CaliberController extends AbstractController {
     }
 
     @Override
-    public Caliber findById(@PathVariable(value = "id") int id) {
+    public Caliber findById(@PathVariable(value = "id") Integer id) {
         return caliberRepository.findById(id).get();
     }
 
     @Override
-    public List<Caliber> findAll() {
-        Iterable<Caliber> calibers = caliberRepository.findAll();
-        return StreamSupport.stream(calibers.spliterator(), false).collect(Collectors.toList());
+    public Iterable<Caliber> findAll() {
+        return caliberRepository.findAll();
     }
 
     @Override
-    public void deleteById(@PathVariable(value = "id") int id) {
+    public void deleteById(@PathVariable(value = "id") Integer id) {
         if (caliberRepository.findById(id).isPresent()) {
             caliberRepository.deleteById(id);
         }

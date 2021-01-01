@@ -3,34 +3,38 @@ package com.anhkhoido.game.EmergencyTaskForce.controller;
 import com.anhkhoido.game.EmergencyTaskForce.dao.vehicle.cruiser.CruiserRepository;
 import com.anhkhoido.game.EmergencyTaskForce.model.vehicle.Cruiser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/emergencyTaskForce/cruisers")
 public class CruiserController extends AbstractController {
 
-    @Autowired
     private CruiserRepository cruiserRepository;
 
+    @Autowired
+    public CruiserController(CruiserRepository cruiserRepository) {
+        this.cruiserRepository = cruiserRepository;
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void create(@RequestBody Cruiser cruiser) {
+        cruiserRepository.save(cruiser);
+    }
+
     @Override
-    public Cruiser findById(@PathVariable(value = "id") int id) {
+    public Cruiser findById(@PathVariable(value = "id") Integer id) {
         return cruiserRepository.findById(id).get();
     }
 
     @Override
-    public List<Cruiser> findAll() {
-        Iterable<Cruiser> cruisers = cruiserRepository.findAll();
-        return StreamSupport.stream(cruisers.spliterator(), false).collect(Collectors.toList());
+    public Iterable<Cruiser> findAll() {
+        return cruiserRepository.findAll();
     }
 
     @Override
-    public void deleteById(@PathVariable(value = "id") int id) {
+    public void deleteById(@PathVariable(value = "id") Integer id) {
         cruiserRepository.deleteById(id);
     }
 

@@ -2,8 +2,7 @@ package com.anhkhoido.game.EmergencyTaskForce.model.vehicle;
 
 import javax.persistence.*;
 
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@MappedSuperclass
 public abstract class Vehicle {
 
     @Id
