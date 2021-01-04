@@ -9,9 +9,9 @@ import java.util.Optional;
 @Service
 public class VehicleService implements VehicleRepository {
 
-    @Autowired
     private VehicleRepository vehicleRepository;
 
+    @Autowired
     public VehicleService(VehicleRepository vehicleRepository) {
         this.vehicleRepository = vehicleRepository;
     }
