@@ -1,11 +1,30 @@
 package com.anhkhoido.game.EmergencyTaskForce.model.vehicle;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Cruiser extends Vehicle {
+public class Cruiser {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private int id;
+
+    @Column
+    private String model;
+
+    @Column
+    private String manufacturer;
+
+    @Column
+    private int mileage;
+
+    @Column
+    private double currentFuel;
+
+    @Column
+    private double fuelCapacity;
 
     @Column
     private String builtInLaptop;
@@ -13,27 +32,18 @@ public class Cruiser extends Vehicle {
     @Column
     private int roomForFirearms;
 
-    public Cruiser() {}
-
-    public Cruiser(String builtInLaptop, int roomForFirearms) {
+    public Cruiser(String model, String manufacturer, int mileage, double currentFuel, double fuelCapacity, String builtInLaptop, int roomForFirearms) {
+        this.model = model;
+        this.manufacturer = manufacturer;
+        this.mileage = mileage;
+        this.currentFuel = currentFuel;
+        this.fuelCapacity = fuelCapacity;
         this.builtInLaptop = builtInLaptop;
         this.roomForFirearms = roomForFirearms;
     }
 
-    public String getBuiltInLaptop() {
-        return builtInLaptop;
-    }
-
-    public void setBuiltInLaptop(String builtInLaptop) {
-        this.builtInLaptop = builtInLaptop;
-    }
-
-    public int getRoomForFirearms() {
-        return roomForFirearms;
-    }
-
-    public void setRoomForFirearms(int roomForFirearms) {
-        this.roomForFirearms = roomForFirearms;
+    public int getId() {
+        return id;
     }
 
     @Override
@@ -41,20 +51,11 @@ public class Cruiser extends Vehicle {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cruiser cruiser = (Cruiser) o;
-        return roomForFirearms == cruiser.roomForFirearms &&
-                Objects.equals(builtInLaptop, cruiser.builtInLaptop);
+        return id == cruiser.id && mileage == cruiser.mileage && Double.compare(cruiser.currentFuel, currentFuel) == 0 && Double.compare(cruiser.fuelCapacity, fuelCapacity) == 0 && roomForFirearms == cruiser.roomForFirearms && Objects.equals(model, cruiser.model) && Objects.equals(manufacturer, cruiser.manufacturer) && Objects.equals(builtInLaptop, cruiser.builtInLaptop);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(builtInLaptop, roomForFirearms);
-    }
-
-    @Override
-    public String toString() {
-        return "Cruiser{" +
-                "builtInLaptop='" + builtInLaptop + '\'' +
-                ", roomForFirearms=" + roomForFirearms +
-                '}';
+        return Objects.hash(id, model, manufacturer, mileage, currentFuel, fuelCapacity, builtInLaptop, roomForFirearms);
     }
 }
