@@ -1,11 +1,10 @@
 package com.anhkhoido.game.EmergencyTaskForce.model.firearm;
 
-import com.sun.istack.Nullable;
-
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(name = "calibers")
 public class Caliber {
 
     @Id
