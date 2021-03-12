@@ -11,6 +11,7 @@ public class CruiserService implements CruiserRepository {
 
     private CruiserRepository cruiserRepository;
 
+    @Autowired
     public CruiserService(CruiserRepository cruiserRepository) {
         this.cruiserRepository = cruiserRepository;
     }
